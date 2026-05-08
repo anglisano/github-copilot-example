@@ -18,6 +18,7 @@ import contextlib
 import logging
 import os
 import shutil
+import sqlite3
 from dataclasses import dataclass, field
 
 from mcp import StdioServerParameters
@@ -70,15 +71,26 @@ class ProxiedServer:
     command: list[str]
     required_env: list[str] = field(default_factory=list)
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+DB_PATH = os.path.join(BASE_DIR, "my_database.db")
+
+# Crear el archivo si no existe para evitar el error "Connection closed"
+if not os.path.exists(DB_PATH):
+    conn = sqlite3.connect(DB_PATH)
+    conn.close()
 
 PROXIED_SERVERS: list[ProxiedServer] = [
     ProxiedServer(
         name="context7",
         command=["npx", "-y", "@upstash/context7-mcp", "--api-key", "$CONTEXT7_API_KEY"],
         required_env=["CONTEXT7_API_KEY"],
-    )
+    ),
+    ProxiedServer(
+        name="sqlite",
+        command=["uv", "tool", "run", "mcp-server-sqlite", "--db-path", DB_PATH],
+    ),
 ]
-
+# uv tool install mcp-server-sqlite --allow-insecure-host files.pythonhosted.org --allow-insecure-host pypi.org
 
 async def setup_proxied_servers(
     mcp: FastMCP,
