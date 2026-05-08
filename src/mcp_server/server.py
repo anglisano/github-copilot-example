@@ -140,4 +140,4 @@ if __name__ == "__main__":
 
         asyncio.run(_run_stdio())
     else:
-        uvicorn.run("mcp_server.server:app", host="0.0.0.0", port=8000)
+        uvicorn.run("src.mcp_server.server:app", host="0.0.0.0", port=8000)

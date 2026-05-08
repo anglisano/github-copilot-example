@@ -5,7 +5,7 @@
             "name": "Launch MCP (Stdio)",
             "type": "debugpy",
             "request": "launch",
-            "module": "helm_mcp_server.server",
+            "module": "src.mcp_server.server",
             "args": [
                 "stdio"
             ],
@@ -20,7 +20,7 @@
             "name": "Launch MCP (HTTP)",
             "type": "debugpy",
             "request": "launch",
-            "module": "helm_mcp_server.server",
+            "module": "src.mcp_server.server",
             "cwd": "${workspaceFolder}",
             "python": "${command:python.interpreterPath}",
             "envFile": "${workspaceFolder}/.env",
