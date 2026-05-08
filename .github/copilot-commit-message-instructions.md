@@ -1,18 +1,18 @@
 # Commit Message Instructions (Gitflow)
 
-Siempre que generes un mensaje de commit, sigue estas reglas de **Gitflow**:
+Whenever you generate a commit message, follow these **Gitflow** rules:
 
-1.  **Formato del Asunto**: `tipo(scope): descripción corta en minúsculas`
-2.  **Tipos permitidos**:
-    - `feat`: Una nueva característica.
-    - `fix`: Una corrección de errores.
-    - `docs`: Cambios en la documentación.
-    - `style`: Cambios que no afectan el significado del código (espacios, formato, etc.).
-    - `refactor`: Un cambio de código que no corrige un error ni añade una característica.
-    - `perf`: Un cambio de código que mejora el rendimiento.
-    - `test`: Añadir pruebas existentes o corregir pruebas existentes.
-    - `chore`: Cambios en el proceso de construcción o herramientas auxiliares.
-3.  **Descripción**:
-    - Usa el imperativo ("añade" en lugar de "añadido").
-    - No pongas punto final al asunto.
-4.  **Cuerpo**: (Opcional) Explica el "por qué" del cambio, no el "cómo". Especialmente si es un `refactor` o `fix` complejo.
+1.  **Subject Format**: `type(scope): short description in lowercase`
+2.  **Allowed Types**:
+    - `feat`: A new feature.
+    - `fix`: A bug fix.
+    - `docs`: Documentation changes.
+    - `style`: Changes that do not affect the meaning of the code (spaces, formatting, etc.).
+    - `refactor`: A code change that neither fixes a bug nor adds a feature.
+    - `perf`: A code change that improves performance.
+    - `test`: Adding missing tests or correcting existing tests.
+    - `chore`: Changes to the build process or auxiliary tools.
+3.  **Description**:
+    - Use the imperative ("add" instead of "added").
+    - Do not put a period at the end of the subject.
+4.  **Body**: (Optional) Explain the "why" of the change, not the "how". Especially if it's a complex `refactor` or `fix`.

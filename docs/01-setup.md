@@ -1,43 +1,42 @@
-# 01 - Setup Inicial e Instalación
+# 01 - Initial Setup and Installation
 
-Para comenzar con GitHub Copilot, necesitamos preparar nuestro entorno de VS Code y asegurarnos de que la conexión sea estable, especialmente en entornos corporativos.
+To get started with GitHub Copilot, we need to prepare our VS Code environment and ensure the connection is stable, especially in corporate environments.
 
-## 1. Instalación de Extensiones
+## 1. Extension Installation
 
-Busca e instala las siguientes extensiones desde el Marketplace de VS Code:
+Search for and install the following extensions from the VS Code Marketplace:
 
-1.  **GitHub Copilot Chat**: La interfaz de chat y funcionalidad inline (`Ctrl+I`).
+1.  **GitHub Copilot Chat**: The chat interface and inline functionality (`Ctrl+I`).
 
+<img src="../assets/images/01-extencion.png" alt="Extensions State" style="width: 25%;">
 
-<img src="../assets/images/01-extencion.png" alt="Estado de Extensiones" style="width: 25%;">
+## 2. Login and Activation
 
-## 2. Login y Activación
+Once installed:
+1.  Click on the **User** icon in the bottom-left corner (or the Copilot icon in the status bar).
+2.  Select **Sign in to GitHub**.
+3.  Follow the steps in the browser to authorize VS Code.
+4.  If everything is correct, you will see the Copilot icon in the bottom status bar without errors.
 
-Una vez instaladas:
-1.  Haz clic en el icono de **Usuario** en la esquina inferior izquierda (o el icono de Copilot en la barra de estado).
-2.  Selecciona **Sign in to GitHub**.
-3.  Sigue los pasos en el navegador para autorizar VS Code.
-4.  Si todo es correcto, verás el icono de Copilot en la barra de estado inferior sin errores.
+<img src="../assets/images/01-login.png" alt="Login State" style="width: 25%;">
 
-<img src="../assets/images/01-login.png" alt="Estado de Extensiones" style="width: 25%;">
+## 3. Corporate Proxy Configuration (UV/PIP)
 
-## 3. Configuración del Proxy Corporativo (UV/PIP)
+In environments with a corporate proxy, you might experience SSL certificate issues (`SSL: CERTIFICATE_VERIFY_FAILED`). To work with Python smoothly in this repo:
 
-En entornos con proxy corporativo, podrías experimentar problemas de certificados SSL (`SSL: CERTIFICATE_VERIFY_FAILED`). Para trabajar con Python de forma fluida en este repo:
-
-### Para `uv`:
-Utiliza estos flags para permitir hosts inseguros localmente:
+### For `uv`:
+Use these flags to allow insecure hosts locally:
 ```sh
 uv sync --allow-insecure-host files.pythonhosted.org --allow-insecure-host pypi.org
 uv add <pkg> --allow-insecure-host files.pythonhosted.org --allow-insecure-host pypi.org
 ```
 
-### Para `pip`:
+### For `pip`:
 ```sh
 pip install <pkg> --trusted-host files.pythonhosted.org --trusted-host pypi.org
 ```
 
-> **Nota**: Estos flags solo son necesarios para la instalación de dependencias local.
+> **Note**: These flags are only necessary for local dependency installation.
 
 ---
-[Próxima Sesión: Funcionalidades Básicas](02-basicos.md)
+[Next Session: Basic Features](02-basics.md)

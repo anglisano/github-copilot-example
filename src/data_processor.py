@@ -1,25 +1,25 @@
 from pydantic import BaseModel
 from typing import List
 
-# Este archivo sirve para probar las instrucciones de proyecto (.github/copilot-instructions.md)
-# Las instrucciones dicen: Usar Pydantic, Type Hints, Español y Programación Funcional.
+# This file serves to test the project instructions (.github/copilot-instructions.md)
+# The instructions say: Use Pydantic, Type Hints, English, and Functional Programming.
 
-class Venta(BaseModel):
+class Sale(BaseModel):
     id: int
-    producto: str
-    precio: float
-    cantidad: int
+    product: str
+    price: float
+    quantity: int
 
-def procesar_ventas_totales(ventas: List[Venta]) -> float:
+def process_total_sales(sales: List[Sale]) -> float:
     """
-    Calcula el total de todas las ventas de forma funcional.
+    Calculates the total of all sales in a functional way.
     """
-    return sum(map(lambda v: v.precio * v.cantidad, ventas))
+    return sum(map(lambda s: s.price * s.quantity, sales))
 
-# Ejemplo de datos para probar
+# Example data for testing
 if __name__ == "__main__":
-    datos = [
-        Venta(id=1, producto="Teclado", precio=50.0, cantidad=2),
-        Venta(id=2, producto="Ratón", precio=25.0, cantidad=1)
+    data = [
+        Sale(id=1, product="Keyboard", price=50.0, quantity=2),
+        Sale(id=2, product="Mouse", price=25.0, quantity=1)
     ]
-    print(f"Total procesado: {procesar_ventas_totales(datos)}")
+    print(f"Total processed: {process_total_sales(data)}")

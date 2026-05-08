@@ -1,0 +1,34 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch MCP (Stdio)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "helm_mcp_server.server",
+            "args": [
+                "stdio"
+            ],
+            "cwd": "${workspaceFolder}",
+            "python": "${command:python.interpreterPath}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Launch MCP (HTTP)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "helm_mcp_server.server",
+            "cwd": "${workspaceFolder}",
+            "python": "${command:python.interpreterPath}",
+            "envFile": "${workspaceFolder}/.env",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "console": "integratedTerminal"
+        },
+
+    ]
+}

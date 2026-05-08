@@ -1,0 +1,18 @@
+[project]
+name = "helm-mcp-server"
+version = "0.1.0"
+description = "MCP Server for Helm with Azure Auth"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.0.0",
+    "fastapi>=0.109.0",
+    "uvicorn>=0.27.0",
+    "pyjwt>=2.8.0",
+    "cryptography>=42.0.0",
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+    "html2text>=2024.2.26",
+    "diagrams>=0.25.1",
+    "truststore>=0.10.4",
+]

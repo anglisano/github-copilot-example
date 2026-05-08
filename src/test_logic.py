@@ -1,10 +1,10 @@
 import math
 
-# Este archivo servirá para probar el Ghost Text y el Inline Chat
-# Tarea: Crea una función para calcular el área de un círculo dado su radio
+# This file will serve to test Ghost Text and Inline Chat
+# Task: Create a function to calculate the area of a circle given its radius
 
-def calcular_area_circulo(radio: float) -> float:
+def calculate_circle_area(radius: float) -> float:
     """
-    Calcula el área de un círculo.
+    Calculates the area of a circle.
     """
-    return math.pi * radio ** 2
+    return math.pi * radius ** 2

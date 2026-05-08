@@ -1,17 +1,17 @@
 # Project Instructions
 
-Este repositorio es para una sesión de entrenamiento sobre GitHub Copilot utilizando **Python**.
+This repository is for a training session on GitHub Copilot using **Python**.
 
-## Estándares de Código
-- Usar **Python 3.10+**.
-- Seguir las normas de estilo **PEP 8**.
-- Todas las funciones deben tener **type hints**.
-- Comentarios y documentación en **Español**.
-- Usar `pytest` para las pruebas unitarias.
+## Code Standards
+- Use **Python 3.10+**.
+- Follow **PEP 8** style guidelines.
+- All functions must have **type hints**.
+- Comments and documentation in **English**.
+- Use `pytest` for unit testing.
 
-## Decisiones Arquitectónicas
-- Preferir programación funcional sobre OOP cuando sea posible.
-- Usar `pydantic` para validación de datos.
+## Architectural Decisions
+- Prefer functional programming over OOP when possible.
+- Use `pydantic` for data validation.
 
-## Contexto de Negocio
-- Estamos construyendo ejemplos educativos, por lo que el código debe ser claro y muy bien comentado.
+## Business Context
+- We are building educational examples, so the code must be clear and very well commented.

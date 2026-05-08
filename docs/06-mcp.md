@@ -1,37 +1,133 @@
 # 06 - Model Context Protocol (MCP)
 
-El **Model Context Protocol (MCP)** es un estándar abierto que permite conectar Copilot con fuentes de datos y herramientas externas que no conoce de forma nativa.
+The **Model Context Protocol (MCP)** is an open standard that allows connecting Copilot with data sources and external tools it doesn't know natively.
 
-## 1. ¿Qué es MCP?
+## 1. What is MCP?
 
-MCP permite que CopilotChat actúe como un "orquestador". A través de servidores MCP, Copilot puede:
-- Consultar bases de datos locales (SQL, NoSQL).
-- Leer documentación interna de tu empresa.
-- Interactuar con APIs de terceros (Jira, Confluence, Slack).
-- Ejecutar herramientas de testing en el navegador (Playwright).
+MCP allows Copilot Chat to act as an "orchestrator." Through MCP servers, Copilot can:
+- Query local databases (SQL, NoSQL).
+- Read internal company documentation.
+- Interact with third-party APIs (Jira, Confluence, Slack).
+- Run browser testing tools (Playwright).
 
-## 2. Cómo configurar servidores MCP
+## 2. How to Configure MCP Servers
 
-En VS Code, puedes añadir servidores MCP en el archivo de configuración `mcp.json`.
+In VS Code, you can add MCP servers in the `mcp.json` configuration file.
 
-**Ejemplo de configuración:**
+**Configuration Example:**
 ```json
 {
   "mcpServers": {
     "sqlite": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sqlite", "--db", "mi_base_de_datos.db"]
+      "args": ["-y", "@modelcontextprotocol/server-sqlite", "--db", "my_database.db"]
     }
   }
 }
 ```
 
-## 3. ¿Para qué sirve en el día a día?
+## 3. What is it useful for day-to-day?
 
-Imagina que estás escribiendo una query SQL. Con MCP, Copilot puede:
-1. Ver el esquema real de tu base de datos local.
-2. Sugerirte el nombre exacto de las columnas.
-3. Ejecutar la query y mostrarte los resultados directamente en el chat.
+Imagine you are writing a SQL query. With MCP, Copilot can:
+1. See the real schema of your local database.
+2. Suggest the exact names of the columns.
+3. Execute the query and show you the results directly in the chat.
+
+
+## 4. Conceptos y Simulación del Protocolo
+
+Para entender cómo Copilot se comunica con herramientas externas, es vital distinguir los dos roles principales:
+
+| Rol | Descripción | Ejemplo |
+|:--- |:--- |:--- |
+| **MCP Client** | El "cerebro" o host que orquestra las llamadas. | GitHub Copilot en VS Code. |
+| **MCP Server** | El "conector" que expone herramientas, recursos o prompts. | Nuestro servidor dummy en Python. |
+
+La comunicación se basa en **JSON-RPC 2.0** sobre un canal de **Server-Sent Events (SSE)** para recibir eventos y **HTTP POST** para enviar comandos.
+
+### Simulación en Vivo (Live Demo)
+
+Sigue estos pasos para simular cómo Copilot "habla" con el servidor MCP usando `curl`.
+
+#### Paso 0: Preparación
+Primero, obtén un token y define la sesión en tu terminal.
+
+```bash
+# 1. Abre el enlace en el navegador para obtener el id_token (JWT)
+# URL: https://login.microsoftonline.com/... (ver arriba)
+
+# 2. Configura las variables de entorno (Bash/Zsh)
+export token="TU_TOKEN_AQUÍ"
+export session="d63eebf17f8444ce88a644535da06f62"
+export base_url="http://localhost:8000"
+```
+
+#### Paso 1 — Inicialización
+El cliente debe identificarse y negociar la versión del protocolo.
+
+```bash
+curl -s -X POST "$base_url/messages/?session_id=$session" \
+  -H "Authorization: Bearer $token" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "initialize",
+    "params": {
+      "protocolVersion": "2024-11-05",
+      "capabilities": {},
+      "clientInfo": { "name": "demo-client", "version": "1.0" }
+    }
+  }'
+```
+
+#### Paso 2 — Notificación de éxito
+Confirmamos al servidor que estamos listos para operar.
+
+```bash
+curl -s -X POST "$base_url/messages/?session_id=$session" \
+  -H "Authorization: Bearer $token" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "notifications/initialized"
+  }'
+```
+
+#### Paso 3 — Listar Herramientas (Discovery)
+Aquí es donde Copilot "descubre" qué puede hacer tu servidor.
+
+```bash
+curl -s -X POST "$base_url/messages/?session_id=$session" \
+  -H "Authorization: Bearer $token" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "method": "tools/list"
+  }'
+```
+
+#### Paso 4 — Ejecutar una Herramienta
+Invocamos una lógica específica (ej. el clima en Madrid).
+
+```bash
+curl -s -X POST "$base_url/messages/?session_id=$session" \
+  -H "Authorization: Bearer $token" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 3,
+    "method": "tools/call",
+    "params": {
+      "name": "get_weather",
+      "arguments": { "city": "Madrid" }
+    }
+  }'
+```
+
+
+
 
 ---
-[Próxima Sesión: Recursos y Continuidad](07-recursos.md)
+[Next Session: Resources and Continuity](07-resources.md)

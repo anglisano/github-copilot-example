@@ -1,19 +1,19 @@
-# Workshop: Introducción a GitHub Copilot
+# Workshop: Introduction to GitHub Copilot
 
-Este repositorio es una guía práctica para una sesión introductoria a GitHub Copilot. Aquí encontrarás ejemplos, configuraciones y guiones para explorar las capacidades de la IA en el desarrollo.
+This repository is a practical guide for an introductory session to GitHub Copilot. Here you will find examples, configurations, and scripts to explore AI capabilities in development.
 
-## 🚀 Contenido de la Sesión
+## 🚀 Session Content
 
-1.  [**Setup Inicial**](docs/01-setup.md): Instalación, Login y configuración del entorno (Proxy).
-2.  [**Funcionalidades Básicas**](docs/02-basicos.md): Ghost Text, Next Edit Suggestions e Inline Chat.
-3.  [**Personalización y Gitflow**](docs/03-personalizacion.md): Instrucciones para mensajes de commit y estándares de equipo.
-4.  [**Instrucciones de Proyecto**](docs/04-instrucciones-proyecto.md): Uso de `/init` y context-sharing con `.github/copilot-instructions.md`.
-5.  [**Capacidades Avanzadas**](docs/05-avanzado.md): Agentes, Skills, Prompts y GitHub CLI.
-6.  [**Model Context Protocol (MCP)**](docs/06-mcp.md): Extendiendo Copilot con herramientas externas.
-7.  [**Recursos y Documentación**](docs/07-recursos.md): Dónde seguir aprendiendo.
+1.  [**Initial Setup**](docs/01-setup.md): Installation, Login, and environment configuration (Proxy).
+2.  [**Basic Features**](docs/02-basics.md): Ghost Text, Next Edit Suggestions, and Inline Chat.
+3.  [**Customization and Gitflow**](docs/03-customization.md): Instructions for commit messages and team standards.
+4.  [**Project Instructions**](docs/04-project-instructions.md): Using `/init` and context-sharing with `.github/copilot-instructions.md`.
+5.  [**Advanced Capabilities**](docs/05-advanced.md): Agents, Skills, Prompts, and GitHub CLI.
+6.  [**Model Context Protocol (MCP)**](docs/06-mcp.md): Extending Copilot with external tools.
+7.  [**Resources and Documentation**](docs/07-resources.md): Where to keep learning.
 
-## 🐍 Proyecto de Ejemplo
-Utilizaremos un proyecto simple en **Python** dentro de la carpeta `src/` para todas las demostraciones.
+## 🐍 Example Project
+We will use a simple project in **Python** inside the `src/` folder for all demonstrations.
 
 ---
-*Hecho con ❤️ para la comunidad de desarrolladores.*
+*Made with ❤️ for the developer community.*
