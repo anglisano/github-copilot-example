@@ -51,6 +51,7 @@ Follow these steps to simulate how Copilot "talks" to the MCP server using `curl
 
 #### Step 0: Preparation
 First, get a token and define the environment variables.
+[login](https://login.microsoftonline.com/f3fd384a-4c3e-4c97-97dc-3c473db5c614/oauth2/v2.0/authorize?client_id=834d78ef-0b30-44c8-9069-a686426e8b60&response_type=id_token&redirect_uri=https://jwt.ms&scope=openid%20profile%20email%20GroupMember.Read.All&response_mode=fragment&state=12345&nonce=67890)
 
 ```cmd
 :: 1. Open the link in your browser to get the id_token (JWT)
@@ -58,48 +59,43 @@ First, get a token and define the environment variables.
 
 :: 2. Configure environment variables (CMD)
 set token=YOUR_TOKEN_HERE
-set session=d63eebf17f8444ce88a644535da06f62
 set base_url=http://localhost:8000
+```
+
+establish a session
+```cmd
+curl -N -H "Authorization: Bearer %token%" "%base_url%/sse"
+```
+```cmd
+set session=d63eebf17f8444ce88a644535da06f62
 ```
 
 #### Step 1 — Initialization
 The client must identify itself and negotiate the protocol version.
 
 ```cmd
-curl -s -X POST "%base_url%/messages/?session_id=%session%" ^
-  -H "Authorization: Bearer %token%" ^
-  -H "Content-Type: application/json" ^
-  -d "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"initialize\",\"params\":{\"protocolVersion\":\"2024-11-05\",\"capabilities\":{},\"clientInfo\":{\"name\":\"demo-client\",\"version\":\"1.0\"}}}"
+curl -s -X POST "%base_url%/messages/?session_id=%session%" -H "Authorization: Bearer %token%" -H "Content-Type: application/json" -d "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"initialize\",\"params\":{\"protocolVersion\":\"2024-11-05\",\"capabilities\":{},\"clientInfo\":{\"name\":\"demo-client\",\"version\":\"1.0\"}}}"
 ```
 
 #### Step 2 — Initialized Notification
 We confirm to the server that we are ready to operate.
 
 ```cmd
-curl -s -X POST "%base_url%/messages/?session_id=%session%" ^
-  -H "Authorization: Bearer %token%" ^
-  -H "Content-Type: application/json" ^
-  -d "{\"jsonrpc\":\"2.0\",\"method\":\"notifications/initialized\"}"
+curl -s -X POST "%base_url%/messages/?session_id=%session%" -H "Authorization: Bearer %token%" -H "Content-Type: application/json" -d "{\"jsonrpc\":\"2.0\",\"method\":\"notifications/initialized\"}"
 ```
 
 #### Step 3 — List Tools (Discovery)
 This is where Copilot "discovers" what your server can do.
 
 ```cmd
-curl -s -X POST "%base_url%/messages/?session_id=%session%" ^
-  -H "Authorization: Bearer %token%" ^
-  -H "Content-Type: application/json" ^
-  -d "{\"jsonrpc\":\"2.0\",\"id\":2,\"method\":\"tools/list\"}"
+curl -s -X POST "%base_url%/messages/?session_id=%session%" -H "Authorization: Bearer %token%" -H "Content-Type: application/json" -d "{\"jsonrpc\":\"2.0\",\"id\":2,\"method\":\"tools/list\"}"
 ```
 
 #### Step 4 — Execute a Tool
 We invoke specific logic (e.g., weather in Madrid).
 
 ```cmd
-curl -s -X POST "%base_url%/messages/?session_id=%session%" ^
-  -H "Authorization: Bearer %token%" ^
-  -H "Content-Type: application/json" ^
-  -d "{\"jsonrpc\":\"2.0\",\"id\":3,\"method\":\"tools/call\",\"params\":{\"name\":\"get_weather\",\"arguments\":{\"city\":\"Madrid\"}}}"
+curl -s -X POST "%base_url%/messages/?session_id=%session%" -H "Authorization: Bearer %token%" -H "Content-Type: application/json" -d "{\"jsonrpc\":\"2.0\",\"id\":3,\"method\":\"tools/call\",\"params\":{\"name\":\"get_weather\",\"arguments\":{\"city\":\"Madrid\"}}}"
 ```
 
 
