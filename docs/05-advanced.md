@@ -52,6 +52,15 @@ When the user asks to "validate this structure", the agent should:
 ### How They Are Activated
 Unlike agents, skills are usually invoked implicitly when the user's prompt matches the skill description, or through agents that have that skill assigned.
 
+
+## Reference Links
+
+| Resource | URL |
+|---|---|
+| Official Skills Docs | https://code.visualstudio.com/docs/copilot/customization/agent-skills |
+| All customization primitives | https://code.visualstudio.com/docs/copilot/customization/overview |
+| Community examples | https://github.com/github/awesome-copilot |
+
 ---
 
 ## 3. GitHub CLI with Copilot (`gh copilot`)

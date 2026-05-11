@@ -28,11 +28,30 @@ Inline Chat is ideal for localized changes or quick refactorings without losing 
 - Ask: `/doc` to generate documentation.
 - Ask: "Convert this for loop into a list comprehension".
 
-## 4. Chat Panel (`Ctrl + Alt + I`)
+## 4. Chat & Interaction Modes (`Ctrl + Alt + I`)
 
-For more abstract queries or those that require more project context, use the side panel.
-- Use `#file` to reference specific files.
-- Use `@workspace` to ask about the entire codebase.
+The Chat panel is the hub for complex tasks. It uses the **Gemini 3 Flash (Preview)** model to help you research, plan, and execute changes.
+
+### A. Ask (Chat)
+Use this for quick questions, explaining code, or debugging errors. It's a conversational interface where you can ask things like "What does this function do?" or "Why am I getting a ValueError here?".
+
+### B. Plan
+When you have a multi-step task, use the **Plan** mode. Copilot will research your workspace, look for relevant files, and propose a step-by-step strategy *before* writing any code. This is perfect for designing new features or architectural changes.
+
+### C. Agent
+The **Agent** mode (often triggered by specific tools or settings) allows Copilot to work autonomously. It can browse the web, read files, and suggest complete file changes across the workspace to fulfill your request.
+
+**Pro tips:**
+- Use `/explain` to get a deep walkthrough of a complex logic or the overall architecture.
+- Use `/fix` to propose solutions for workspace-wide errors or performance bottlenecks.
+- Use `/doc` to generate comprehensive documentation for modules or entire directories.
+- Use `@file` to focus the model on specific files.
+- Be iterative: If the first answer isn't perfect, refine your prompt.
+
+### Ideal Iterative Flow
+<div style="text-align: center;">
+<img src="../assets/images/02-ask_plan_agent_loop.png" alt="Extensions State" style="width: 40%;">
+</div>
 
 ---
 [Next Session: Customization and Gitflow](03-customization.md)
