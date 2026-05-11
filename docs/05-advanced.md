@@ -26,7 +26,11 @@ You are a Python refactoring expert. Your goal is to:
 
 ### How to Use It
 In Copilot chat, simply type `@` followed by the agent name:
-> **User**: `@data-architect` How can I refactor `src/sales.py` to use functional programming?
+<div style="text-align: center;">
+<img src="../assets/images/05-agent.png" alt="Extensions State" style="width: 40%;">
+</div>
+
+> **User**: How can I refactor `src/sales.py` to use functional programming?
 
 ## 2. Skills
 
