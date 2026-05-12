@@ -30,7 +30,7 @@ In Copilot chat, simply type `@` followed by the agent name:
 <img src="../assets/images/05-agent.png" alt="Extensions State" style="width: 40%;">
 </div>
 
-> **User**: How can I refactor `src/sales.py` to use functional programming?
+> **User**: Add to my `src/sales.py` a function that aggregates the sales from a list.
 
 ## 2. Skills
 
